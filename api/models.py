@@ -14,9 +14,6 @@ class Intention_Schedule(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.id
-
 
 class Intention(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -28,9 +25,6 @@ class Intention(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.id
-
 
 class User(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -39,9 +33,6 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     intentions = models.ManyToManyField(Intention, related_name="user")
-
-    def __str__(self):
-        return self.id
 
 
 class CheckIn(models.Model):
@@ -52,6 +43,3 @@ class CheckIn(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.id
