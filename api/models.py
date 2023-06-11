@@ -31,7 +31,7 @@ class IntentionSchedule(models.Model):
 class Intention(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField("Name")
-    user = models.ManyToManyField(User)
+    user = models.ManyToManyField(User, related_name="intention")
     schedule = models.ForeignKey(
         IntentionSchedule, related_name="intention", on_delete=models.PROTECT
     )
