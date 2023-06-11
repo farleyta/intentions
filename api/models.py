@@ -1,9 +1,10 @@
+import uuid
 from django.db import models
 from timezone_field import TimeZoneField
 
 
 class User(models.Model):
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True, max_length=254)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -13,7 +14,7 @@ class User(models.Model):
 
 
 class IntentionSchedule(models.Model):
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     cron_min = models.CharField(max_length=2)
     cron_hour = models.CharField(max_length=2)
     cron_day_of_month = models.CharField(max_length=2)
@@ -27,7 +28,7 @@ class IntentionSchedule(models.Model):
 
 
 class Intention(models.Model):
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField("Name")
     user = models.ManyToManyField(User)
     schedule = models.ForeignKey(
@@ -42,7 +43,7 @@ class Intention(models.Model):
 
 
 class CheckIn(models.Model):
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE)
     intention = models.ForeignKey(
         Intention, related_name="intention", on_delete=models.CASCADE
