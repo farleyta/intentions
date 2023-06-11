@@ -15,11 +15,12 @@ class User(models.Model):
 
 class IntentionSchedule(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    cron_min = models.CharField(max_length=2)
-    cron_hour = models.CharField(max_length=2)
-    cron_day_of_month = models.CharField(max_length=2)
-    cron_month = models.CharField(max_length=2)
-    cron_day_of_week = models.CharField(max_length=2)
+    cron_min = models.CharField(max_length=5, default="*")
+    # All crons are stored in UTC!
+    cron_hour = models.CharField(max_length=5, default="*")
+    cron_day_of_month = models.CharField(max_length=5, default="*")
+    cron_month = models.CharField(max_length=5, default="*")
+    cron_day_of_week = models.CharField(max_length=5, default="*")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
